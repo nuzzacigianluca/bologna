@@ -10,20 +10,20 @@ const inputTemplate = `
 <input type="text" class="form-control imageInput hidden" id="name-input%n" aria-describedby="emailHelp" placeholder="Enter image url">`
 
 
-const clearValues = () =>{
-  document.getElementById("name-input").value="";
-  document.getElementById("description-input").value="";
-  document.getElementById("lon-input").value="";
-  document.getElementById("lat-input").value="";
+const clearValues = () => {
+  document.getElementById("name-input").value = "";
+  document.getElementById("description-input").value = "";
+  document.getElementById("lon-input").value = "";
+  document.getElementById("lat-input").value = "";
 }
 
 const addPoiButton = document.getElementById("add-poi");
 
-addPoiButton.onclick = () =>{
+addPoiButton.onclick = () => {
   clearValues()
   let html = ""
-  for (let i=0; i<10; i++) {
-    html += inputTemplate.replace("%n", String(i+1));
+  for (let i = 0; i < 10; i++) {
+    html += inputTemplate.replace("%n", String(i + 1));
   }
   divInput.innerHTML = html;
   document.querySelector("#name-input1").classList.remove("hidden");
@@ -33,15 +33,15 @@ addPoiButton.onclick = () =>{
 //max 10 images
 let imagesAdded = 1;
 addImage.onclick = () => {
-  if(imagesAdded<10){
-    document.querySelector("#name-input"+String(imagesAdded+1)).classList.remove("hidden");
-    imagesAdded+=1;
+  if (imagesAdded < 10) {
+    document.querySelector("#name-input" + String(imagesAdded + 1)).classList.remove("hidden");
+    imagesAdded += 1;
   }
 }
 
 
 
-const save = (array) =>{
+const save = (array) => {
   fetch(urlSet, {
     headers: {
       "Content-Type": "application/json",
@@ -105,7 +105,7 @@ const clickSave = (array) => {
       nome: nameValue,
       descrizione: descrValue,
       immagine: imagesUrl,
-      coordinate:{
+      coordinate: {
         longitudine: lonValue,
         latitudine: latValue
       },
@@ -139,10 +139,11 @@ const divPoiTemplate = `
         </button>
       </div>
     </div>`;
-  
+
 
 const renderTable = (array) => {
   //render tabelle e tutto
+  /*
   divContentPoi.innerHTML = "";
   console.log(array);
   array.forEach((poi) => {
@@ -170,6 +171,6 @@ const renderTable = (array) => {
       const id = div.id;
       console.log(id);
     }
-  })
-  
+  })*/
+
 }
