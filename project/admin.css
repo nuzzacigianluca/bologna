@@ -48,11 +48,22 @@
   border-bottom-right-radius: 0;
 }
 
+.image-poi img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
 .bottom-poi {
   display: flex;
   flex-direction: row;
   margin-left: 30px;
   align-items: center;
+}
+.buttons-poi{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .nome {

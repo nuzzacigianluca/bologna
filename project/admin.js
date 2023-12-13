@@ -7,7 +7,7 @@ const addImage = document.getElementById("add-image");
 const divInput = document.getElementById("input-images-box");
 
 const inputTemplate = `
-<input type="text" class="form-control imageInput hidden" id="name-input%n" aria-describedby="emailHelp" placeholder="Enter image url">`
+<input type="text" class="form-control imageInput hidden" id="name-input%n" aria-describedby="emailHelp" placeholder="Enter image url" value="%value">`
 
 
 const clearValues = () => {
@@ -20,10 +20,10 @@ const clearValues = () => {
 const addPoiButton = document.getElementById("add-poi");
 
 addPoiButton.onclick = () => {
-  clearValues()
+  clearValues();
   let html = ""
   for (let i = 0; i < 10; i++) {
-    html += inputTemplate.replace("%n", String(i + 1));
+    html += inputTemplate.replace("%n", String(i + 1)).replace("%value","");
   }
   divInput.innerHTML = html;
   document.querySelector("#name-input1").classList.remove("hidden");
@@ -77,10 +77,11 @@ const get = () => {
   })
     .then((r) => r.json())
     .then((r) => {
-      clickSave(r.result);
+      clickSave(r.result,document.getElementById("save-button"));
       renderTable(r.result);
     })
 }
+
 
 const saveButton = document.getElementById("save-button");
 const clickSave = (array) => {
@@ -98,7 +99,7 @@ const clickSave = (array) => {
     const latValue = latInput.value;
 
     const id = Date.now();
-    console.log(id)
+    console.log(id);
 
     const poi = {
       id: id,
@@ -129,33 +130,129 @@ const divContentPoi = document.getElementById("poi-content");
 
 const divPoiTemplate = `
 <div class="poi" id="%id">
-      <div class="nome">%nome</div>
-      <div class="buttons-poi">
-        <button class="delete-button btn" id="button%id">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-          </svg>
-        </button>
+  <div class="image-poi">
+    <img src="%linkimage">
+  </div>
+  <div class="bottom-poi">
+    <div class="nome">%nome</div>
+    <div class="buttons-poi">
+      <button type="button" class="btn edit-button" id="edit%id" data-toggle="modal" data-target="#modalEdit%id">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+          <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+        </svg>
+      </button>
+      <!-- Modal -->
+  <div class="modal fade" id="modalEdit%id" tabindex="-1" role="dialog"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Point of Interest</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="name-input%id">Name</label>
+              <input type="text" class="form-control" id="name-input%id" placeholder="Enter name">
+            </div>
+            <div class="form-group">
+              <label for="description-input%id">Description</label>
+              <textarea type="text" class="form-control" id="description-input%id"
+                placeholder="Add description"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="image-input%id">Images</label>
+              <div id="input-images-box%id">
+
+              </div>
+              <button id="add-image%id" class="btn btn-light" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg"
+                  viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+                </svg>
+              </button>
+              <small id="" class="form-text text-muted">Max 10 images</small>
+            </div>
+            <div class="row">
+              <label for="coord-box%id">Coordinates</label>
+              <div class="col" id="coord-box%id">
+                <label for="lon-input%id">Longitude</label>
+                <input type="text" class="form-control" id="lon-input%id" placeholder="Add longitude">
+              </div>
+              <div class="col">
+                <label for="lat-input%id">Latitude</label>
+                <input type="text" class="form-control" id="lat-input%id" placeholder="Add latitude">
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="save-button%id">Edit</button>
+        </div>
       </div>
-    </div>`;
+    </div>
+  </div>
+      <button type="button" class="btn" id="trash%id" data-toggle="modal" data-target="#modalDelete%id">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+          viewBox="0 0 16 16">
+          <path
+            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+          <path
+            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+        </svg>
+
+        
+      </button>
+      <!-- Modal -->
+        <div class="modal fade" id="modalDelete%id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Elimina POI</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Sei sicuro di voler eliminare il Point Of Interest?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-danger delete-button" id="button%id" data-dismiss="modal">Elimina POI</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+</div>`;
 
 
 const renderTable = (array) => {
   //render tabelle e tutto
-  /*
+  
   divContentPoi.innerHTML = "";
   console.log(array);
+  if(array.length==0){
+    divContentPoi.innerHTML = "Non ci sono ancora POI"
+  }
   array.forEach((poi) => {
-    divContentPoi.innerHTML += divPoiTemplate.replace("%nome",poi.nome).replaceAll("%id",poi.id);
+    divContentPoi.innerHTML += divPoiTemplate.replaceAll("%id",poi.id).replace("%linkimage",poi.immagine[0]).replace("%nome",poi.nome);
   })
   //delete buttons
   const deleteButtons = document.querySelectorAll(".delete-button");
   deleteButtons.forEach((button) => {
     button.onclick = () => {
-      const buttonId = button.id.replace("button","");
+      const deleteButtonId = button.id.replace("button","");
       array.forEach((poi)=>{
-        if(poi.id==buttonId){
+        if(poi.id==deleteButtonId){
           array.splice(array.indexOf(poi),1);
           console.log(array);
           save(array);
@@ -164,6 +261,42 @@ const renderTable = (array) => {
     };
   });
 
+  //edit buttons
+  const editButtons = document.querySelectorAll(".edit-button");
+  editButtons.forEach((button) =>{
+    button.onclick = () => {
+      const editButtonsId = button.id.replace("edit","");
+      clearValues();
+      array.forEach((poi)=>{
+        if(poi.id==editButtonsId){
+          document.getElementById("name-input"+editButtonsId).value=poi.nome;
+          document.getElementById("description-input"+editButtonsId).value=poi.descrizione;
+          document.getElementById("lon-input"+editButtonsId).value=poi.coordinate.longitudine;
+          document.getElementById("lat-input"+editButtonsId).value=poi.coordinate.latitudine;
+          document.getElementById("input-images-box"+editButtonsId).innerHTML = "";
+          poi.immagine.forEach((image)=>{
+            document.getElementById("input-images-box"+editButtonsId).innerHTML += inputTemplate.replace("%value",image).replace("hidden","");
+          })
+        }
+      })
+      const saveButtonEdit = document.getElementById("save-button"+editButtonsId);
+      saveButtonEdit.onclick=() =>{
+        array.forEach((poi)=>{
+          if(poi.id==editButtonsId){
+            array[array.indexOf(poi)].nome=document.getElementById("name-input"+editButtonsId).value;
+            array[array.indexOf(poi)].descrizione=document.getElementById("description-input"+editButtonsId).value;
+            array[array.indexOf(poi)].coordinate.longitudine=document.getElementById("lon-input"+editButtonsId).value;
+            array[array.indexOf(poi)].coordinate.latitudine=document.getElementById("lat-input"+editButtonsId).value;
+            save(array);
+          }
+        })
+        
+      }
+      
+    }
+  })
+  
+
   //open detail
   const poiDiv = document.querySelectorAll(".poi");
   poiDiv.forEach((div) => {
@@ -171,6 +304,6 @@ const renderTable = (array) => {
       const id = div.id;
       console.log(id);
     }
-  })*/
+  })
 
 }
