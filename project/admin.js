@@ -307,3 +307,10 @@ const renderTable = (array) => {
   })
 
 }
+
+
+//logout
+const logoutButton = document.getElementById("log-out");
+logoutButton.onclick = () => {
+  window.location.href = "login.html";
+}
