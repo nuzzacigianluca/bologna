@@ -19,6 +19,7 @@
 </head>
 
 <body>
+  
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -28,19 +29,20 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#"><button type="button" class="btn btn-danger" id="log-out">Log Out</button></a>
-        </li>
+        <p class="h1">Admin page</p>
       </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <a class="nav-link" href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="add-poi">
+          Add POI
+        </button></a>
+        <a class="nav-link" href="#"><button type="button" class="btn btn-danger" id="log-out">Log Out</button></a>
+      </form>
 
     </div>
   </nav>
 
-  <h1>Admin</h1>
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="add-poi">
-    Add POI
-  </button>
+  
+  
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -100,6 +102,7 @@
     </div>
   </div>
 
+  
   <div id="poi-content" class="poi-content">
     
     
