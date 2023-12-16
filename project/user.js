@@ -27,11 +27,46 @@ const get = () => {
     .then((r) => r.json())
     .then((r) => {
       array = r.result;
-      console.log(array);
-      //render(array);
+      renderTable(array);
     })
 };
 
+const divPoiTemplate = `
+<div class="poi" id="%id">
+      <div class="external-poi">
+        <div class="image-poi">
+          <img src="%linkimage">
+        </div>
+        <div class="bottom-poi">
+          <div class="nome">%nome</div>
+        </div>
+      </div>
+    </div>`;
+const renderTable = (array) => {
+  //render tabelle e tutto
+  const divContentPoi=document.getElementById("divContentPoi")
+  divContentPoi.innerHTML = "";
+  console.log(array);
+  if(array.length==0){
+    divContentPoi.innerHTML = "Non ci sono ancora POI"
+  }
+  array.forEach((poi) => {
+    divContentPoi.innerHTML += divPoiTemplate.replaceAll("%id",poi.id).replace("%linkimage",poi.immagine[0]).replace("%nome",poi.nome);
+  })
+  //delete buttons
+  const deleteButtons = document.querySelectorAll(".delete-button");
+  deleteButtons.forEach((button) => {
+    button.onclick = () => {
+      const deleteButtonId = button.id.replace("button","");
+      array.forEach((poi)=>{
+        if(poi.id==deleteButtonId){
+          array.splice(array.indexOf(poi),1);
+          console.log(array);
+          save(array);
+        };
+      });
+    };
+  });}
 
 
 const mapFunction = () => {
@@ -136,7 +171,7 @@ const mapFunction = () => {
 
 const listTemplate = `
 <div id="divListView" class="poi-content">
-  lista
+  
 </div>`;
 
 const mapTemplate = `
