@@ -19,92 +19,94 @@
 </head>
 
 <body>
+  <div id="main">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
   
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <p class="h1">Admin page - Bologna</p>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <a class="nav-link" href="#"><button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal" id="add-poi">
-          + Add POI
-        </button></a>
-        <a class="nav-link" href="#"><button type="button" class="btn btn-danger" id="log-out">Log Out</button></a>
-      </form>
-
-    </div>
-  </nav>
-
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <p class="h1">Admin page - Bologna</p>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <a class="nav-link" href="#"><button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal" id="add-poi">
+            + Add POI
+          </button></a>
+          <a class="nav-link" href="#"><button type="button" class="btn btn-danger" id="log-out">Log Out</button></a>
+        </form>
   
+      </div>
+    </nav>
   
-
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Create Point of Interest</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="name-input">Name</label>
-              <input type="text" class="form-control" id="name-input" placeholder="Enter name">
-            </div>
-            <div class="form-group">
-              <label for="description-input">Description</label>
-              <textarea type="text" class="form-control" id="description-input"
-                placeholder="Add description"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="image-input">Images</label>
-              <div id="input-images-box">
-
+    
+    
+  
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create Point of Interest</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="name-input">Name</label>
+                <input type="text" class="form-control" id="name-input" placeholder="Enter name">
               </div>
-              <button id="add-image" class="btn btn-light" type="button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg"
-                  viewBox="0 0 16 16">
-                  <path fill-rule="evenodd"
-                    d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
-                </svg>
-              </button>
-              <small id="" class="form-text text-muted">Max 10 images</small>
-            </div>
-            <div class="row">
-              <label for="coord-box">Coordinates</label>
-              <div class="col" id="coord-box">
-                <label for="lon-input">Longitude</label>
-                <input type="text" class="form-control" id="lon-input" placeholder="Add longitude">
+              <div class="form-group">
+                <label for="description-input">Description</label>
+                <textarea type="text" class="form-control" id="description-input"
+                  placeholder="Add description"></textarea>
               </div>
-              <div class="col">
-                <label for="lat-input">Latitude</label>
-                <input type="text" class="form-control" id="lat-input" placeholder="Add latitude">
+              <div class="form-group">
+                <label for="image-input">Images</label>
+                <div id="input-images-box">
+  
+                </div>
+                <button id="add-image" class="btn btn-light" type="button">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg"
+                    viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+                  </svg>
+                </button>
+                <small id="" class="form-text text-muted">Max 10 images</small>
               </div>
-            </div>
-
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="save-button" data-dismiss="modal">Save</button>
+              <div class="row">
+                <label for="coord-box">Coordinates</label>
+                <div class="col" id="coord-box">
+                  <label for="lon-input">Longitude</label>
+                  <input type="text" class="form-control" id="lon-input" placeholder="Add longitude">
+                </div>
+                <div class="col">
+                  <label for="lat-input">Latitude</label>
+                  <input type="text" class="form-control" id="lat-input" placeholder="Add latitude">
+                </div>
+              </div>
+  
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="save-button" data-dismiss="modal">Save</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
   
-  <div id="poi-content" class="poi-content">
+    
+    <div id="poi-content" class="poi-content">
+    </div>
   </div>
+  
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
