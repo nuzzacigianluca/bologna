@@ -99,7 +99,6 @@ const clickSave = (array) => {
     const latValue = latInput.value;
 
     const id = Date.now();
-    console.log(id);
 
     const poi = {
       id: id,
@@ -241,7 +240,6 @@ const renderTable = (array) => {
   //render tabelle e tutto
   
   divContentPoi.innerHTML = "";
-  console.log(array);
   if(array.length==0){
     divContentPoi.innerHTML = "Non ci sono ancora POI"
   }
@@ -256,7 +254,6 @@ const renderTable = (array) => {
       array.forEach((poi)=>{
         if(poi.id==deleteButtonId){
           array.splice(array.indexOf(poi),1);
-          console.log(array);
           save(array);
         };
       });
@@ -329,7 +326,6 @@ const renderTable = (array) => {
   poiDiv.forEach((div) => {
     div.onclick = () => {
       const id = div.id;
-      console.log(id);
     }
   })
 
