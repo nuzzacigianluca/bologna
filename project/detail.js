@@ -107,7 +107,7 @@ const template = `<div class="container">
 
 
 const renderAll = (element) =>{
-    document.title="DETAIL - "+element.nome
+    document.title="DETAIL - "+element.nome;
     console.log(element.immagine)
     let html ="";
     let row="";
