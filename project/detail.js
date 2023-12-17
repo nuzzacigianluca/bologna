@@ -110,25 +110,25 @@ const renderAll = (element) =>{
     console.log(element.immagine)
     let html ="";
     let row="";
-    const coord = element.coordinate.latitudine + ", "+ element.coordinate.longitudine
-    row=templateNew.replace("%nomepoi", element.nome).replace("%descrizione", element.descrizione).replace("%coord", coord)
-    html=row
-    document.getElementById("detail").innerHTML=html
+    const coord = element.coordinate.latitudine + ", "+ element.coordinate.longitudine;
+    row=templateNew.replace("%nomepoi", element.nome).replace("%descrizione", element.descrizione).replace("%coord", coord);
+    html=row;
+    document.getElementById("detail").innerHTML=html;
     
 }   
-  get()
+get()
 
-  const renderPhotos = (element) =>{
-    let html ="";
-    //let row="";
-    row=firstPhoto.replaceAll("%firstimg", element[0])
-    html+=row
-    console.log(html)
-    console.log(element)
-    for (let i = 1; i <= element.legth; i++) {
-        row=photoTemplate.replaceAll("%imagesrc", element[i])
-        html+=row
-        console.log(html)
-    }
-    document.getElementById("photos").innerHTML=html
+const renderPhotos = (element) =>{
+  let html ="";
+  //let row="";
+  row=firstPhoto.replaceAll("%firstimg", element.immagine[0]);
+  html+=row;
+  console.log(html);
+  console.log(element);
+  for (let i = 1; i <= element.immagine.length; i++) {
+      row=photoTemplate.replaceAll("%imagesrc", element.immagine[i]);
+      html+=row;
+      console.log(html);
   }
+  document.getElementById("photos").innerHTML=html;
+}
