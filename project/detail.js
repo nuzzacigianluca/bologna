@@ -106,11 +106,8 @@ const template = `<div class="container">
 
 
 const renderAll = (element) =>{
-<<<<<<< HEAD
-=======
     document.title="DETAIL - "+element.nome;
     console.log(element.immagine)
->>>>>>> 5133a159a5e46d7df29f45612cde56731ba899b2
     let html ="";
     let row="";
     const coord = element.coordinate.latitudine + ", "+ element.coordinate.longitudine;
@@ -135,4 +132,10 @@ const renderPhotos = (element) =>{
       
   }
   document.getElementById("photos").innerHTML=html;
+}
+
+
+const logoutButton = document.getElementById("log-out");
+logoutButton.onclick = () => {
+  window.location.href = "login.html";
 }
