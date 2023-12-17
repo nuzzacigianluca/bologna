@@ -2,13 +2,11 @@
 
 const main = () => {
 
-  window.onbeforeunload = function () {
-    localStorage.setItem("logged",false);
-  };
+  
   
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const poi = urlParams.get('poi')
+  const poi = urlParams.get('poi');
   
   
   const token = "839ab0d3-070b-4298-8e8e-62bed11c7adb";
@@ -145,14 +143,14 @@ const main = () => {
   
   const logoutButton = document.getElementById("log-out");
   logoutButton.onclick = () => {
-    localStorage.setItem("logged",false);
+    Cookies.set('logged','false');
     window.location.href = "login.html";
   }
 }
 
 
 
-const logged = localStorage.getItem("logged");
+const logged = Cookies.get('logged');
 console.log(logged)
 if(logged=="true"){
   main();

@@ -1,4 +1,5 @@
-localStorage.setItem("logged",false);
+Cookies.set('logged','false');
+
 
 
 const show =`<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 18 18">
@@ -40,7 +41,7 @@ const check = (us,pw) =>{
     const result = r.result;
     //open admin/user page
     if(result==true){
-      localStorage.setItem("logged",true);
+      Cookies.set('logged','true');
       if(us=="admin"){
         window.location.href = "admin.html";
       }else if(us=="user"){

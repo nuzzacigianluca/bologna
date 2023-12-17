@@ -1,10 +1,9 @@
 
 
+
 const main = () => {
 
-  window.onbeforeunload = function () {
-    localStorage.setItem("logged",false);
-  };
+  
 
   const token = "839ab0d3-070b-4298-8e8e-62bed11c7adb";
   const chiave = "progetto-poi";
@@ -72,8 +71,10 @@ const main = () => {
     const poiDiv = document.querySelectorAll(".poi");
     poiDiv.forEach((div) => {
       div.onclick = () => {
-        let url = new URL("http://localhost:5500/project/detail.html?poi=0")
+        let address = (window.location.origin)+"/project/detail.html?poi=0";
+        let url = new URL(String(address));
         url.searchParams.set('poi', div.id)
+        console.log(url.href);
         location.href = url.href;
       }
     })
@@ -164,9 +165,10 @@ const main = () => {
       if (feature.length != 0) {
         array.forEach((element)=>{
           if (element.nome==feature[0].name){
-            console.log("ciao")
-            let url = new URL("http://localhost:5500/project/detail.html?poi=0")
+            let address = (window.location.origin)+"/project/detail.html?poi=0";
+            let url = new URL(String(address));
             url.searchParams.set('poi', element.id)
+            console.log(url.href);
             location.href = url.href;
           }
         })
@@ -219,20 +221,20 @@ const main = () => {
   //logout
   const logoutButton = document.getElementById("log-out");
   logoutButton.onclick = () => {
-    localStorage.setItem("logged",false);
+    Cookies.set('logged','false');
     window.location.href = "login.html";
   }
 }
 
 
-const logged = localStorage.getItem("logged");
-console.log(logged)
+const logged =  Cookies.get('logged');
+console.log(logged);
+
 if(logged=="true"){
   main();
 }else{
   document.getElementById("main").innerHTML = `
   <h2 style="text-align: center; margin-top: 30px;">NON SEI LOGGATO</h2>`
-}
-
+};
 
 

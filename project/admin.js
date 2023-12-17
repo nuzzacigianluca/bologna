@@ -2,9 +2,6 @@
 
 const main = () => {
 
-  window.onbeforeunload = function () {
-    localStorage.setItem("logged",false);
-  };
 
   const token = "839ab0d3-070b-4298-8e8e-62bed11c7adb";
   const chiave = "progetto-poi";
@@ -343,14 +340,14 @@ const main = () => {
   //logout
   const logoutButton = document.getElementById("log-out");
   logoutButton.onclick = () => {
-    localStorage.setItem("logged",false);
+    Cookies.set('logged','false');
     window.location.href = "login.html";
   }
 }
 
 
-const logged = localStorage.getItem("logged");
-console.log(logged)
+const logged = Cookies.get('logged');
+console.log(logged);
 if(logged=="true"){
   main();
 }else{
