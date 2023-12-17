@@ -1,7 +1,7 @@
 
 
 const main = () => {
-
+  
   
   
   const queryString = window.location.search;
@@ -112,6 +112,7 @@ const main = () => {
   
   
   const renderAll = (element) =>{
+      document.getElementById("title-name-detail").innerText = "Detail page - "+element.nome;
       document.title="DETAIL - "+element.nome;
       console.log(element.immagine)
       let html ="";
@@ -120,6 +121,9 @@ const main = () => {
       row=templateNew.replace("%nomepoi", element.nome).replace("%descrizione", element.descrizione).replace("%coord", coord);
       html=row;
       document.getElementById("detail").innerHTML=html;
+      
+      const backPage = Cookies.get('back');
+      document.getElementById("back-button-a").href="/project/"+backPage;
       
   }   
   get()
@@ -151,7 +155,7 @@ const main = () => {
 
 
 const logged = Cookies.get('logged');
-console.log(logged)
+console.log(logged);
 if(logged=="true"){
   main();
 }else{

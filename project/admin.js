@@ -330,7 +330,12 @@ const main = () => {
     const poiDiv = document.querySelectorAll(".poi");
     poiDiv.forEach((div) => {
       div.onclick = () => {
-        const id = div.id;
+        let address = (window.location.origin)+"/project/detail.html?poi=0";
+        let url = new URL(String(address));
+        url.searchParams.set('poi', div.id)
+        console.log(url.href);
+        location.href = url.href;
+        Cookies.set('back','admin.html');
       }
     })
 

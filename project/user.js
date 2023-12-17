@@ -76,6 +76,7 @@ const main = () => {
         url.searchParams.set('poi', div.id)
         console.log(url.href);
         location.href = url.href;
+        Cookies.set('back','user.html');
       }
     })
   }
@@ -170,6 +171,7 @@ const main = () => {
             url.searchParams.set('poi', element.id)
             console.log(url.href);
             location.href = url.href;
+            Cookies.set('back','user.html');
           }
         })
       }
