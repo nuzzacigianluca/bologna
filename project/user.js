@@ -163,27 +163,18 @@ const mapFunction = () => {
   const map = new ol.Map({ target: document.querySelector('.map') });
   setLayers(map);
   setCenter(map, [long_b, lat_b]);
-  setZoom(map, 15.5);
+  setZoom(map, 13.5);
   array.forEach((element)=>{
     let coordi = { lonlat: [element.coordinate.latitudine, element.coordinate.longitudine], name: element.nome }
     addMarker(map, coordi);
-    //addMarker(map, { lonlat: [element.coordinate.latitudine, element.coordinate.longitudine], name: element.nome });
   })
-  /*
-  const trova = document.getElementById("trova")
-  trova.onclick = () => {s
-    const lat1 = document.getElementById("lat1")
-    const long1 = document.getElementById("long1")
-    const lat2 = document.getElementById("lat2")
-    const long2 = document.getElementById("long2")
-    let coordi = { lonlat: [lat1.value, long1.value], name: "mark1" }
-    addMarker(map, coordi);
-    addMarker(map, { lonlat: [lat2.value, long2.value], name: "mark2" });
-    const max_x = Math.max(12.492, coordi.lonlat[0])
-    const max_y = Math.max(41.890, coordi.lonlat[1])
 
-  }*/
-
+  map.on('click', function (e) {
+    const feature = map.getFeaturesAtPixel(e.pixel);
+    if (feature.length != 0) {
+      console.log("clicked")
+    }
+  })
   initOverlay(map);
 
 }
