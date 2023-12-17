@@ -127,9 +127,12 @@ const renderPhotos = (element) =>{
   console.log(html);
   console.log(element);
   for (let i = 1; i <= element.immagine.length; i++) {
-      row=photoTemplate.replaceAll("%imagesrc", element.immagine[i]);
+      if(element.immagine[i]){
+        row=photoTemplate.replaceAll("%imagesrc", element.immagine[i]);
       html+=row;
-      console.log(html);
+      }
+      
   }
+  console.log(html)
   document.getElementById("photos").innerHTML=html;
 }
