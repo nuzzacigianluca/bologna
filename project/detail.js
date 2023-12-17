@@ -21,7 +21,6 @@ const get = () => {
       .then((r) => r.json())
       .then((r) => {
         array = r.result;
-        console.log(array)
         findPoi()
       })
   };
@@ -107,7 +106,6 @@ const template = `<div class="container">
 
 
 const renderAll = (element) =>{
-    console.log(element.immagine)
     let html ="";
     let row="";
     const coord = element.coordinate.latitudine + ", "+ element.coordinate.longitudine;
@@ -123,8 +121,7 @@ const renderPhotos = (element) =>{
   //let row="";
   row=firstPhoto.replaceAll("%firstimg", element.immagine[0]);
   html+=row;
-  console.log(html);
-  console.log(element);
+ 
   for (let i = 1; i <= element.immagine.length; i++) {
       if(element.immagine[i]){
         row=photoTemplate.replaceAll("%imagesrc", element.immagine[i]);
@@ -132,6 +129,5 @@ const renderPhotos = (element) =>{
       }
       
   }
-  console.log(html)
   document.getElementById("photos").innerHTML=html;
 }

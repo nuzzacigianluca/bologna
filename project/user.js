@@ -54,7 +54,6 @@ const renderTable = (array) => {
   //render tabelle e tutto
   const divContentPoi=document.getElementById("divListView")
   divContentPoi.innerHTML = "";
-  console.log(array);
   if(array.length==0){
     divContentPoi.innerHTML = "Non ci sono ancora POI"
   }
@@ -69,7 +68,6 @@ const renderTable = (array) => {
       array.forEach((poi)=>{
         if(poi.id==deleteButtonId){
           array.splice(array.indexOf(poi),1);
-          console.log(array);
           save(array);
         };
       });
@@ -80,10 +78,8 @@ const renderTable = (array) => {
     div.onclick = () => {
       let url = new URL("http://localhost:5500/project/detail.html?poi=0")
       url.searchParams.set('poi', div.id)
-      console.log(url)
       location.href = url.href;
-      //const id = div.id;
-      //console.log("ciao" +  id);
+   
     }
   })
 }
@@ -91,7 +87,6 @@ const renderTable = (array) => {
 
 
 const mapFunction = () => {
-  console.log(array)
   const container = document.getElementById('popup');
   const content = document.getElementById('popup-content');
   const closer = document.getElementById('popup-closer');
@@ -172,7 +167,14 @@ const mapFunction = () => {
   map.on('click', function (e) {
     const feature = map.getFeaturesAtPixel(e.pixel);
     if (feature.length != 0) {
-      console.log("clicked")
+      array.forEach((element)=>{
+        if (element.nome==feature[0].name){
+          console.log("ciao")
+          let url = new URL("http://localhost:5500/project/detail.html?poi=0")
+          url.searchParams.set('poi', element.id)
+          location.href = url.href;
+        }
+      })
     }
   })
   initOverlay(map);
