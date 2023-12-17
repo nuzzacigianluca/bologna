@@ -62,6 +62,7 @@
 }
 
 .bottom-poi {
+  height: 38px;
   display: flex;
   flex-direction: row;
   margin-left: 30px;
@@ -76,6 +77,7 @@
   flex: 5;
 }
 
+
 .buttons-poi {
   flex: 1;
 }
@@ -89,3 +91,9 @@
 .edit-button:hover{
   opacity: 0.6;
 }
+
+.content-view{
+  width: 100%;
+  text-align: center;
+}
+

@@ -39,12 +39,20 @@ const divPoiTemplate = `
         </div>
         <div class="bottom-poi">
           <div class="nome">%nome</div>
+          <div class="buttons-poi">
+            
+          </div>
         </div>
       </div>
+      
+      
+    
     </div>`;
+
+
 const renderTable = (array) => {
   //render tabelle e tutto
-  const divContentPoi=document.getElementById("divContentPoi")
+  const divContentPoi=document.getElementById("divListView")
   divContentPoi.innerHTML = "";
   console.log(array);
   if(array.length==0){
@@ -193,6 +201,7 @@ contentView.innerHTML = listTemplate;
 
 buttonListView.onclick = () => {
   contentView.innerHTML = listTemplate;
+  renderTable(array);
 }
 
 buttonMapView.onclick = () => {
