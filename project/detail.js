@@ -129,7 +129,7 @@ const renderPhotos = (element) =>{
   for (let i = 1; i <= element.immagine.length; i++) {
       if(element.immagine[i]){
         row=photoTemplate.replaceAll("%imagesrc", element.immagine[i]);
-      html+=row;
+        html+=row;
       }
       
   }
