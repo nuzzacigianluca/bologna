@@ -66,7 +66,20 @@ const renderTable = (array) => {
         };
       });
     };
-  });}
+  });
+  const poiDiv = document.querySelectorAll(".poi");
+  poiDiv.forEach((div) => {
+    div.onclick = () => {
+      let url = new URL("http://localhost:5500/project/detail.html?poi=0")
+      url.searchParams.set('poi', div.id)
+      console.log(url)
+      location.href = url.href;
+      //const id = div.id;
+      //console.log("ciao" +  id);
+    }
+  })
+}
+  
 
 
 const mapFunction = () => {
@@ -205,8 +218,10 @@ buttonMapView.onclick = () => {
 get();
 
 
+
 //logout
 const logoutButton = document.getElementById("log-out");
 logoutButton.onclick = () => {
   window.location.href = "login.html";
 }
+
