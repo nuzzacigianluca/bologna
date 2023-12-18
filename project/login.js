@@ -1,4 +1,5 @@
-Cookies.set('logged','false');
+Cookies.set('logged-admin','false');
+Cookies.set('logged-user','false');
 
 
 
@@ -41,11 +42,13 @@ const check = (us,pw) =>{
     const result = r.result;
     //open admin/user page
     if(result==true){
-      Cookies.set('logged','true');
+      
       if(us=="admin"){
         window.location.href = "admin.html";
+        Cookies.set('logged-admin','true');
       }else if(us=="user"){
         window.location.href = "user.html";
+        Cookies.set('logged-user','true');
       }
     }else{
        wrong.style.visibility = "visible";

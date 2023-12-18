@@ -334,13 +334,13 @@ const main = () => {
   //logout
   const logoutButton = document.getElementById("log-out");
   logoutButton.onclick = () => {
-    Cookies.set('logged','false');
+    Cookies.set('logged-admin','false');
     window.location.href = "login.html";
   }
 }
 
 
-const logged = Cookies.get('logged');
+const logged = Cookies.get('logged-admin');
 console.log(logged);
 if(logged=="true"){
   main();

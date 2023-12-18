@@ -1,45 +1,10 @@
 
+const token = "839ab0d3-070b-4298-8e8e-62bed11c7adb";
+const chiave = "progetto-poi";
+const urlSet = "https://ws.progettimolinari.it/cache/set";
+const urlGet = "https://ws.progettimolinari.it/cache/get";
 
-const main = () => {
-  
-  
-  
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const poi = urlParams.get('poi');
-  
-  
-  const token = "839ab0d3-070b-4298-8e8e-62bed11c7adb";
-  const chiave = "progetto-poi";
-  const urlSet = "https://ws.progettimolinari.it/cache/set";
-  const urlGet = "https://ws.progettimolinari.it/cache/get";
-  const get = () => {
-      fetch(urlGet, {
-        headers: {
-          "Content-Type": "application/json",
-          key: token
-        },
-        method: "POST",
-        body: JSON.stringify({
-          key: chiave
-        })
-      })
-        .then((r) => r.json())
-        .then((r) => {
-          array = r.result;
-          findPoi()
-        })
-    };
-  
-  const findPoi=()=>{
-      array.forEach((element)=>{
-          if(element.id==poi){
-              renderAll(element)
-              renderPhotos(element)
-          }
-      })
-  }
-  const photoTemplate=`<div class="carousel-item">
+const photoTemplate=`<div class="carousel-item">
   <img class="d-block w-100" title="source: imgur.com" src="%imagesrc" alt="%imagesrc">
   </div>`
   
@@ -109,52 +74,95 @@ const main = () => {
   </div>
   </div>`
   
+
+
+const renderAll = (element) =>{
+  document.getElementById("title-name-detail").innerText = "Detail page - "+element.nome;
+  document.title="DETAIL - "+element.nome;
+  console.log(element.immagine)
+  let html ="";
+  let row="";
+  const coord = element.coordinate.latitudine + ", "+ element.coordinate.longitudine;
+  row=templateNew.replace("%nomepoi", element.nome).replace("%descrizione", element.descrizione).replace("%coord", coord);
+  html=row;
+  document.getElementById("detail").innerHTML=html;
   
+  const backPage = Cookies.get('back');
+  document.getElementById("back-button-a").href="/project/"+backPage;
   
-  const renderAll = (element) =>{
-      document.getElementById("title-name-detail").innerText = "Detail page - "+element.nome;
-      document.title="DETAIL - "+element.nome;
-      console.log(element.immagine)
-      let html ="";
-      let row="";
-      const coord = element.coordinate.latitudine + ", "+ element.coordinate.longitudine;
-      row=templateNew.replace("%nomepoi", element.nome).replace("%descrizione", element.descrizione).replace("%coord", coord);
-      html=row;
-      document.getElementById("detail").innerHTML=html;
-      
-      const backPage = Cookies.get('back');
-      document.getElementById("back-button-a").href="/project/"+backPage;
-      
-  }   
-  get()
-  
-  const renderPhotos = (element) =>{
-    let html ="";
-    //let row="";
-    row=firstPhoto.replaceAll("%firstimg", element.immagine[0]);
-    html+=row;
-   
-    for (let i = 1; i <= element.immagine.length; i++) {
-        if(element.immagine[i]){
-          row=photoTemplate.replaceAll("%imagesrc", element.immagine[i]);
-          html+=row;
-        }
-        
+}   
+
+
+const renderPhotos = (element) =>{
+let html ="";
+//let row="";
+row=firstPhoto.replaceAll("%firstimg", element.immagine[0]);
+html+=row;
+
+for (let i = 1; i <= element.immagine.length; i++) {
+    if(element.immagine[i]){
+      row=photoTemplate.replaceAll("%imagesrc", element.immagine[i]);
+      html+=row;
     }
-    document.getElementById("photos").innerHTML=html;
+    
+}
+document.getElementById("photos").innerHTML=html;
+}
+
+
+const findPoi=(poi)=>{
+  array.forEach((element)=>{
+      if(element.id==poi){
+          renderAll(element)
+          renderPhotos(element)
+      }
+  })
+}
+
+const get = (poi) => {
+  fetch(urlGet, {
+    headers: {
+      "Content-Type": "application/json",
+      key: token
+    },
+    method: "POST",
+    body: JSON.stringify({
+      key: chiave
+    })
+  })
+    .then((r) => r.json())
+    .then((r) => {
+      array = r.result;
+      findPoi(poi)
+    })
+};
+
+const main = () => {
+  
+  
+  
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const poi = urlParams.get('poi');
+  if(poi){
+    get(poi);
+  }else{
+    document.getElementById("main").innerHTML = `
+  <h2 style="text-align: center; margin-top: 30px;">NON HAI SELEZIONATO NESSUN POI</h2>`;
   }
+  
   
   
   const logoutButton = document.getElementById("log-out");
   logoutButton.onclick = () => {
-    Cookies.set('logged','false');
+    Cookies.set('logged-user','false');
     window.location.href = "login.html";
   }
 }
 
 
 
-const logged = Cookies.get('logged');
+const logged = Cookies.get('logged-user');
 console.log(logged);
 if(logged=="true"){
   main();
