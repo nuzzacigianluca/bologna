@@ -111,12 +111,18 @@ document.getElementById("photos").innerHTML=html;
 
 
 const findPoi=(poi)=>{
+  let find = false;
   array.forEach((element)=>{
       if(element.id==poi){
-          renderAll(element)
-          renderPhotos(element)
+        find=true;
+        renderAll(element)
+        renderPhotos(element)
       }
   })
+  if(find==false){
+    document.getElementById("main").innerHTML = `
+  <h2 style="text-align: center; margin-top: 30px;">IL POI NON ESISTE</h2>`;
+  }
 }
 
 const get = (poi) => {
@@ -144,6 +150,7 @@ const main = () => {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const poi = urlParams.get('poi');
+
   if(poi){
     get(poi);
   }else{
