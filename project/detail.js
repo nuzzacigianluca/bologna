@@ -88,7 +88,7 @@ const renderAll = (element) =>{
   document.getElementById("detail").innerHTML=html;
   
   const backPage = Cookies.get('back');
-  document.getElementById("back-button-a").href="/project/"+backPage;
+  document.getElementById("back-button-a").href="https://nuzzacigianluca.github.io/bologna/project/"+backPage;
   
 }   
 
