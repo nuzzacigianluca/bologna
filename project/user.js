@@ -74,7 +74,6 @@ const main = () => {
         let address = "https://nuzzacigianluca.github.io/bologna/project/detail.html?poi=0";
         let url = new URL(String(address));
         url.searchParams.set('poi', div.id)
-        console.log(url.href);
         location.href = url.href;
         Cookies.set('back','user.html');
       }
@@ -170,8 +169,7 @@ const main = () => {
             let url = new URL(String(address));
             url.searchParams.set('poi', element.id)
             console.log(url.href);
-            location.href = "./detail.html"
-            //location.href = url.href;
+            location.href = url.href;
             Cookies.set('back','user.html');
           }
         })
