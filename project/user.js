@@ -168,7 +168,7 @@ const main = () => {
       if (feature.length != 0) {
         array.forEach((element)=>{
           if (element.nome==feature[0].name){
-            let address = "/project/detail.html?poi=0";
+            let address = location.href+"detail.html?poi=0";
             let url = new URL(String(address));
             url.searchParams.set('poi', element.id)
             console.log(url.href);
