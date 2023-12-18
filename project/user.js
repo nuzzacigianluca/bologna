@@ -71,7 +71,7 @@ const main = () => {
     const poiDiv = document.querySelectorAll(".poi");
     poiDiv.forEach((div) => {
       div.onclick = () => {
-        let address = (window.location.origin)+"project/detail.html?poi=0";
+        let address = "/project/detail.html?poi=0";
         console.log(address)
         let url = new URL(String(address));
         url.searchParams.set('poi', div.id)
@@ -168,7 +168,7 @@ const main = () => {
       if (feature.length != 0) {
         array.forEach((element)=>{
           if (element.nome==feature[0].name){
-            let address = (window.location.origin)+"/project/detail.html?poi=0";
+            let address = "/project/detail.html?poi=0";
             let url = new URL(String(address));
             url.searchParams.set('poi', element.id)
             console.log(url.href);
